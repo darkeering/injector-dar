@@ -1,46 +1,40 @@
-# Getting Started with Create React App
+# 控制反转和依赖注入
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+1. 通过 `yarn add create-app <app-name> --template=typescript` 创建 react 项目
 
-## Available Scripts
+2. 运行 `yarn run eject` 来展开所有 `react` 的配置
 
-In the project directory, you can run:
+3. 添加 `babel-plugin-transform-typescript-metadata` 和 `@babel/plugin-proposal-decorators` 依赖
+    ```typescript
+    yarn add babel-plugin-transform-typescript-metadata @babel/plugin-proposal-decorators
+    ```
 
-### `yarn start`
+4. 在 `package.json` 中设置 `babel` 配置项
+    ```typescript
+    "babel": {
+        "presets": [
+          "react-app"
+        ],
+        "plugins": [
+          "babel-plugin-transform-typescript-metadata",
+          [
+            "@babel/plugin-proposal-decorators",
+            {
+              "legacy": true
+            }
+          ]
+        ]
+      }
+    ```
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `yarn test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `yarn build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `yarn eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+5. 在 `tsconfig.json` 中将 `emitDecoratorMetadata` 和 `experimentalDecorators` 设置为 `true`, `target` 设置为 `es5`
+```typescript
+{
+  "compilerOptions": {
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "target": "es5",
+  },
+}
+```
+> 这样就能在react中使用装饰器和元数据了, 具体使用见 [App.tsx](./src/App.tsx) line 30

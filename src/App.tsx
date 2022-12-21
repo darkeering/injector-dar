@@ -185,15 +185,39 @@ app.createModule(UserModule);
 const compTree = app.createComponent(Management, app);
 console.log("初始");
 compTree.init();
+// 初始
+// manageId 111111
+// name dar
+// age 18
+// name dar
+// age 18
 
 console.log("");
 console.log("修改user1");
 compTree.children[0].change();
+// 修改user1
+// manageId 111111
+// name darkeering
+// age 19
+// name dar
+// age 18
 
 console.log("");
 console.log("修改user2");
 compTree.children[1].change();
+// 修改user2
+// manageId 111111
+// name darkeering
+// age 19
+// name darkeering
+// age 19
 
 console.log("");
 console.log("修改Id");
 compTree.change();
+// 修改Id
+// manageId 222222
+// name darkeering
+// age 19
+// name darkeering
+// age 19
